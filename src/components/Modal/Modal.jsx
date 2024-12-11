@@ -4,13 +4,15 @@ import credit from "../../Img/Group 33588@2x.png";
 
 function Modal() {
   const [pageSize, setPageSize] = useState(6);
-
+  const handleLoad = () => {
+    setPageSize(pageSize);
+  };
   return (
     <>
       <div>
         <h1>이달의 여자 아이돌</h1>
         <div>
-          <img src={credit} alt="creditImg" />
+          <img />
           숫자 뉴진스 민지 표숫자 체크표시
         </div>
         <div> 버튼 투표하기</div>
