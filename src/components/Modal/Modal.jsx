@@ -1,6 +1,6 @@
 import { getVote } from "../../api";
 import React, { useState } from "react";
-import credit from "../../Img/Group 33588@2x.png";
+import credit from "../../assets/icons/credit.png";
 
 function Modal() {
   const [pageSize, setPageSize] = useState(6);
