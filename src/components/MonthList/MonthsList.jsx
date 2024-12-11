@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getData } from "../../api";
+import { getChartData } from "../../api";
 import CustomButton from "../CustomButtom/CustomButton";
 import chartIMG from "../../assets/icons/Chart.svg";
 import styles from "./styled.module.scss";
@@ -16,7 +16,7 @@ function MonthsList() {
     const fetchData = async () => {
       setLoading(true); // 데이터 로딩 시작
       try {
-        const data = await getData({ gender, pageSize });
+        const data = await getChartData({ gender, pageSize });
         return data;
       } catch (err) {
         console.error("데이터를 가져오는 데 실패했습니다:", err); // 에러 로그 추가
