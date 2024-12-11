@@ -1,5 +1,9 @@
-
 const BASE_URL = "https://fandom-k-api.vercel.app/";
+
+export async function getIdolData({ pageSize = 16 }) {
+  const query = `12-9/idols?pageSize=${pageSize}`;
+  const response = await fetch(`${BASE_URL}/${query}`);
+}
 
 export async function getChartData({ gender, pageSize = 10 }) {
   const url = new URL(`12-9/charts/{gender}`, BASE_URL);
@@ -10,6 +14,7 @@ export async function getChartData({ gender, pageSize = 10 }) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
   }
   return response.json();
+}
 
 export async function getSponsershipData() {
   const response = await fetch(
@@ -20,6 +25,4 @@ export async function getSponsershipData() {
   }
   const data = await response.json();
   return data;
-
-}
 }
