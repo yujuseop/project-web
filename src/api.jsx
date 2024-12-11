@@ -1,4 +1,4 @@
-export async function getSponsership() {
+export async function getSponsershipData() {
   const response = await fetch(
     `https://fandom-k-api.vercel.app/12-9/donations?pageSize=10`
   );

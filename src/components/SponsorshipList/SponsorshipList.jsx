@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SponsorshipItem from "./SponsorShipItem";
 import styles from "./SponsorshipList.module.css";
-import { getSponsership } from "../../api";
+import { getSponsershipData } from "../../api";
 import leftIcon from "../../assets/lefticon.png";
 import rightIcon from "../../assets/righticon.png";
 
@@ -10,7 +10,7 @@ function SponsorshipList() {
   const [translateX, setTranslateX] = useState(0);
 
   const handleLoad = async () => {
-    const result = await getSponsership();
+    const result = await getSponsershipData();
     const { list } = result;
     setItems(list);
   };
@@ -33,8 +33,8 @@ function SponsorshipList() {
   }, []);
 
   return (
-    <div>
-      <h1>후원을 기다리는 조공</h1>
+    <div className={styles.sponsor_section}>
+      <h1 className={styles.sponsor_title}>후원을 기다리는 조공</h1>
       <div className={styles.card_wrap}>
         <div className={styles.card_handleButton} onClick={onclickLeftButton}>
           <img
