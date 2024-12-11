@@ -1,4 +1,4 @@
-import Credit from "../../assets/credit.png";
+import Credit from "../../assets/icons/credit.png";
 import styles from "./SponsorshipItem.module.css";
 
 function SponsorshipItem({ item }) {

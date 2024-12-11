@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import SponsorshipItem from "./SponsorShipItem";
 import styles from "./SponsorshipList.module.css";
 import { getSponsershipData } from "../../api";
-import leftIcon from "../../assets/lefticon.png";
-import rightIcon from "../../assets/righticon.png";
+import leftIcon from "../../assets/icons/lefticon.png";
+import rightIcon from "../../assets/icons/righticon.png";
 
 function SponsorshipList() {
   const [items, setItems] = useState([]);
