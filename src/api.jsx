@@ -1,5 +1,10 @@
 const BASE_URL = "https://fandom-k-api.vercel.app/";
 
+export async function getIdolData({ pageSize = 16 }) {
+  const query = `12-9/idols?pageSize=${pageSize}`;
+  const response = await fetch(`${BASE_URL}/${query}`);
+}
+
 export async function getChartData({ gender, pageSize = 10 }) {
   const url = new URL(`12-9/charts/{gender}`, BASE_URL);
   url.searchParams.append("gender", gender);
