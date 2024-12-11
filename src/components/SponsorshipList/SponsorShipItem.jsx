@@ -10,7 +10,6 @@ function SponsorshipItem({ item }) {
 
   //진행도 바의 width길이 조절 (현재 카드 최대길이 282px)
   const progress = (item.receivedDonations / item.targetDonation) * 282;
-  console.log(progress);
 
   return (
     <div className={styles.card}>

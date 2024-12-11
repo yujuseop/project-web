@@ -6,6 +6,5 @@ export async function getSponsership() {
     throw new Error("후원데이터를 가져오는데 실패했습니다.");
   }
   const data = await response.json();
-  console.log(data);
   return data;
 }

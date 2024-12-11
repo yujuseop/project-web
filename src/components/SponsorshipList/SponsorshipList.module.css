@@ -1,13 +1,17 @@
 .card_list {
-  display: flex;
-  gap: 24px;
-  overflow: scroll;
+  overflow: hidden;
   max-width: 1200px;
 }
 
 .card_list::-webkit-scrollbar {
   /* 스크롤바 숨기기 */
   display: none;
+}
+
+.card_list_container {
+  display: flex;
+  gap: 24px;
+  transition: all 1s;
 }
 
 .card_wrap {
