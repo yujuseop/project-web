@@ -47,8 +47,10 @@ function SponsorshipList({ handleSponsorModal }) {
   }, []);
 
   return (
-    <div className={styles.sponsor_section}>
-      <h1 className={styles.sponsor_title}>후원을 기다리는 조공</h1>
+    <div className={styles.sponsor_wrap}>
+      <div className={styles.sponsor_title_wrap}>
+        <h1 className={styles.sponsor_title}>후원을 기다리는 조공</h1>
+      </div>
       <div className={styles.card_wrap}>
         <div className={styles.card_handleButton} onClick={onclickLeftButton}>
           <img

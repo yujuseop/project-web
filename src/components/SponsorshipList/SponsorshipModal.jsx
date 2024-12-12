@@ -1,7 +1,14 @@
+import { useState } from "react";
 import credit from "../../assets/icons/credit.png";
 import styles from "./SponsorshipModal.module.scss";
 
 function SponsorshipModal({ data }) {
+  const [input, setInput] = useState("");
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  };
+
   return (
     <div className={styles.card}>
       <h1 className={styles.title}>후원하기</h1>
@@ -22,7 +29,12 @@ function SponsorshipModal({ data }) {
       </div>
       <div className={styles.credit_container}>
         <div className={styles.credit_input_container}>
-          <input className={styles.credit_input} placeholder="크레딧 입력" />
+          <input
+            className={styles.credit_input}
+            placeholder="크레딧 입력"
+            onChange={handleInput}
+            value={input}
+          />
           <img
             className={styles.credit_logo}
             src={credit}
