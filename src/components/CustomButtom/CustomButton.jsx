@@ -1,58 +1,31 @@
-import React from "react";
-import PropTypes from "prop-types";
-import s from "./styled.module.scss";
+// CustomButton.js
+import styles from "../CustomButtom/Button.module.scss";
 
-/**
- * 커스텀 버튼 컴포넌트
- * @param {Event} onClick 클릭 이벤트
- * @param {number} textSize 텍스트 사이즈
- * @param {number} maxHeight 버튼 최대 높이
- * @param {4|8} iconTextGap 아이콘과 텍스트 사이 간격
- * @param {boolean} disabled 버튼 비활성화 여부
- * @param {boolean} rounded 둥근 모서리 여부
- * @param {string} btnText 버튼 내 텍스트 (필수)
- * @param {React.ReactNode} children SVG 아이콘 및 기타 자식 요소
- */
-const CustomButton = ({
-  onClick = () => {},
-  textSize = 14,
-  maxHeight = 40,
-  iconTextGap = 4,
-  disabled = false,
-  rounded = false,
-  btnText,
+export default function CustomButton({
   children,
-}) => {
+  width,
+  height,
+  isRoundButton,
+  isMoreButton,
+  className = "",
+  onClick = () => {},
+}) {
   return (
     <button
-      initial={{ scale: 1 }}
-      whileTap={!disabled ? { scale: 0.9 } : { scale: 1 }}
-      className={s.button}
-      type="button"
       onClick={onClick}
-      disabled={disabled}
-      data-rounded={rounded.toString()}
-      style={{ height: `${maxHeight}px`, fontSize: `${textSize}px` }}
+      className={`${className} ${styles.button} ${
+        isRoundButton ? styles.roundedButon : ""
+      } ${isMoreButton ? styles.moreButton : ""}`}
+      style={{ width: `${width}px`, height: `${height}px` }}
     >
-      {children && (
-        <div className={s.icon} style={{ marginRight: `${iconTextGap}px` }}>
-          {children}
-        </div>
-      )}
-      {btnText}
+      {children}
     </button>
   );
-};
+}
 
-CustomButton.propTypes = {
-  textSize: PropTypes.number,
-  maxHeight: PropTypes.number,
-  iconTextGap: PropTypes.oneOf([4, 8]),
-  disabled: PropTypes.bool,
-  rounded: PropTypes.bool,
-  btnText: PropTypes.node.isRequired,
-  children: PropTypes.node,
-  onClick: PropTypes.func,
-};
-
-export default CustomButton;
+// <Custom Button
+//   isRoundButton => 이 props를 주면 radius가 24px인 둥근 버튼
+//   네모를 원하면 사용안하면 됨
+// width,height props
+// padding 까지 props로 줘야되는지..
+// 여기에 className 지정해야 될때를 위해 className props

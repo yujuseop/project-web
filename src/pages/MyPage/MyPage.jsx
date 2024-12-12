@@ -1,5 +1,5 @@
 import Header from "../../components/Header/Header";
-import logoImage from "../../assets/images/logoImage.png";
+import logoImage from "../../assets/images/logoImage.svg";
 import useDevice from "../../hooks/useDevice";
 import styles from "./MyPage.module.scss";
 import { useEffect, useState } from "react";

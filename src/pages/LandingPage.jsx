@@ -1,9 +1,9 @@
 import React from "react";
 import "../styles/color.scss";
 import "../styles/font.scss";
-import "../styles/LandingPageStyles.css";
-import logo from "../assets/images/logoImage.png";
-import Section from "./Sections.jsx";
+import styles from "../components/LandingPage/LandingPageStyles.module.scss";
+import logo from "../assets/images/logonobackground.svg";
+import Section from "../components/LandingPage/Sections.jsx";
 import images from "./LPimages.js";
 
 function LandingPage() {
@@ -49,7 +49,7 @@ function LandingPage() {
             screenimg={images.screen2}
           />
         </div>
-        <div className="page4">
+        <div className={styles.page4}>
           <Section
             donate="나만의 아티스트"
             title={

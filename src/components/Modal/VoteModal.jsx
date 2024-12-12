@@ -5,7 +5,6 @@ import styles from "./Modal.module.scss";
 
 function VotePage() {
   const [voteModal, setVoteModal] = useState(false);
-  const [lackModal, setLackModal] = useState(false);
 
   return (
     <>
@@ -22,28 +21,11 @@ function VotePage() {
           </div>
         )}
       </div>
-      <div>
-        {}
-        <img src={credit} alt="creditImg" />앗 투표하기 위한 크레딧이 부족해요
-        <button>확인</button>
-      </div>
-      <div>
-        <h2>크레딧 충전하기</h2>
-        <div>
-          <img src={credit} alt="creditImg" /> 100{" "}
-        </div>
-        <div>
-          <img src={credit} alt="creditImg" /> 500{" "}
-        </div>
-        <div>
-          <img src={credit} alt="creditImg" /> 1000{" "}
-        </div>
-      </div>
     </>
   );
 }
 
-export default Modal;
+export default VoteModal;
 
 //차트 투표하기를 누르면 투표하는창을
 //투표하는 창에서 선택하면 빨간색 표시가 나게
