@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/color.scss";
 import "../styles/font.scss";
 import "../styles/LandingPageStyles.css";
-import logo from "../assets/images/logoImage.png";
+import logo from "../assets/images/logoImage.svg";
 import Section from "./Sections.jsx";
 import images from "./LPimages.js";
 

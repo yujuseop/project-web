@@ -1,0 +1,84 @@
+@use "../../styles/color.scss" as *;
+
+.chartNav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  width: 1200px;
+  h2 {
+    margin: 80px 0 0 0;
+  }
+}
+
+.chartBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 80px 0 0 0;
+  padding: 8px;
+}
+
+.imgBorder {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid $brand-orange;
+  border-radius: 50%;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  top: 5px;
+  left: 5px;
+  gap: 8px;
+  border-radius: 40px;
+  opacity: 0px;
+  object-fit: cover;
+}
+
+.chartContents {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.chartInfo {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab {
+  margin: 0;
+  width: 600px;
+  height: 42px;
+
+  background-color: $black-200;
+  color: $gray-warm;
+
+  border-style: none;
+}
+
+.activeTab {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: $white;
+  border-bottom: 1px solid #ffffff;
+}
+
+.LankingChart {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.moreBtn {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+}
