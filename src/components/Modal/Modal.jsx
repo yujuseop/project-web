@@ -1,6 +1,7 @@
 import { getVote } from "../../api";
 import React, { useState } from "react";
 import credit from "../../assets/icons/credit.png";
+import IdolModalChart from "./IdolModal";
 
 function Modal() {
   const [pageSize, setPageSize] = useState(6);
@@ -12,10 +13,21 @@ function Modal() {
       <div>
         <h1>이달의 여자 아이돌</h1>
         <div>
-          <img />
-          숫자 뉴진스 민지 표숫자 체크표시
+          <ul>
+            {idolList?.map((idol, index) => (
+              <IdolModalChart
+                key={`${idol.id}-${index}`}
+                imgUrl={idol.profilePicture}
+                group={idol.group}
+                name={idol.name}
+                totalVotes={idol.totalVotes}
+              />
+            ))}
+          </ul>
         </div>
-        <div> 버튼 투표하기</div>
+        <CustomButton width={128} height={32}>
+          <span>투표하기</span>
+        </CustomButton>
         <div> 투표하는데 1000 크레딧이 소모됩니다.</div>
       </div>
       <div>
