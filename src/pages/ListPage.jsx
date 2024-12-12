@@ -7,16 +7,23 @@ import useScrollTop from "../hooks/useScrollTop";
 import SponsorshipModal from "../components/SponsorshipList/SponsorshipModal";
 
 function ListPage() {
+  const [isSponsorModal, setIsSponsorModal] = useState(false);
+  const [sponsorData, setSponsorData] = useState();
   useScrollTop();
-  const [sponsorModal, setSponsorModal] = useState(false);
-  const handleSponsorModal = (item) => {};
+
+  //후원 모달 팝업 true,false (작업중)
+  const handleSponsorModal = (data) => {
+    setIsSponsorModal(true);
+    setSponsorData(data);
+  };
+
   return (
     <div>
       <Header />
       <div>리스트 페이지</div>
       <MyCredit />
-      <SponsorshipList />
-      {sponsorModal && <SponsorshipModal />}
+      <SponsorshipList handleSponsorModal={handleSponsorModal} />
+      {isSponsorModal && <SponsorshipModal data={sponsorData} />}
       <MonthsList />
     </div>
   );

@@ -5,7 +5,7 @@ import { getSponsershipData } from "../../api";
 import leftIcon from "../../assets/icons/lefticon.png";
 import rightIcon from "../../assets/icons/righticon.png";
 
-function SponsorshipList() {
+function SponsorshipList({ handleSponsorModal }) {
   const [items, setItems] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
   const [translateX, setTranslateX] = useState(0);
@@ -37,7 +37,10 @@ function SponsorshipList() {
     setTranslateX((pre) => pre - 306);
   };
 
-  const handleSponsorModal = (item) => {};
+  //팝업창 데이터 올려주기
+  const SponsorModal = (data) => {
+    handleSponsorModal(data);
+  };
 
   useEffect(() => {
     handleLoad();
@@ -61,7 +64,13 @@ function SponsorshipList() {
             style={{ transform: style }}
           >
             {items.map((item) => {
-              return <SponsorshipItem key={item.id} item={item} />;
+              return (
+                <SponsorshipItem
+                  key={item.id}
+                  item={item}
+                  SponsorModal={SponsorModal}
+                />
+              );
             })}
           </div>
         </div>

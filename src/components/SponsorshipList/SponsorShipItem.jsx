@@ -1,7 +1,7 @@
 import Credit from "../../assets/icons/credit.png";
 import styles from "./SponsorshipItem.module.scss";
 
-function SponsorshipItem({ item }) {
+function SponsorshipItem({ item, SponsorModal }) {
   //현재 날짜와 마감일의 차이를 일 단위로 출력
   const todayDate = new Date();
   const endDate = new Date(item.deadline);
@@ -15,7 +15,9 @@ function SponsorshipItem({ item }) {
   const disable = !item.status;
 
   //버튼 클릭시 팝업창 띄우기
-  const onclickSponsorButton = () => {};
+  const onclickSponsorButton = () => {
+    SponsorModal(item);
+  };
   return (
     <div className={styles.card}>
       <div className={styles.card_img_container}>
@@ -25,7 +27,11 @@ function SponsorshipItem({ item }) {
           src={item.idol.profilePicture}
         />
         <div className={styles.card_img_grdiant}></div>
-        <button disabled={disable} className={styles.card_button}>
+        <button
+          disabled={disable}
+          className={styles.card_button}
+          onClick={onclickSponsorButton}
+        >
           후원하기
         </button>
       </div>
