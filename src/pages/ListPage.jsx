@@ -13,7 +13,7 @@ function ListPage() {
 
   //후원 모달 팝업 true,false (작업중)
   const handleSponsorModal = (data) => {
-    setIsSponsorModal(true);
+    setIsSponsorModal(!isSponsorModal);
     setSponsorData(data);
   };
 
@@ -23,7 +23,12 @@ function ListPage() {
       <div>리스트 페이지</div>
       <MyCredit />
       <SponsorshipList handleSponsorModal={handleSponsorModal} />
-      {isSponsorModal && <SponsorshipModal data={sponsorData} />}
+      {isSponsorModal && (
+        <SponsorshipModal
+          data={sponsorData}
+          handleSponsorModal={handleSponsorModal}
+        />
+      )}
       <MonthsList />
     </div>
   );
