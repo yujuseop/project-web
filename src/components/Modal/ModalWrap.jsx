@@ -1,9 +1,9 @@
 import styles from "./ModalWrap.module.scss";
 import deleteBtn from "../../assets/icons/btn_delete.png";
 
-function ModalWrap({ children, handleSponsorModal }) {
+function ModalWrap({ children, handleDeleteModal }) {
   const onclickDeleteBtn = () => {
-    handleSponsorModal();
+    handleDeleteModal();
   };
 
   return (

@@ -1,7 +1,7 @@
 import Credit from "../../assets/icons/credit.png";
 import styles from "./SponsorshipItem.module.scss";
 
-function SponsorshipItem({ item, SponsorModal }) {
+function SponsorshipItem({ item, handleSponsorModal }) {
   //현재 날짜와 마감일의 차이를 일 단위로 출력
   const todayDate = new Date();
   const endDate = new Date(item.deadline);
@@ -16,7 +16,7 @@ function SponsorshipItem({ item, SponsorModal }) {
 
   //버튼 클릭시 팝업창 띄우기
   const onclickSponsorButton = () => {
-    SponsorModal(item);
+    handleSponsorModal(item);
   };
   return (
     <div className={styles.card}>

@@ -37,11 +37,6 @@ function SponsorshipList({ handleSponsorModal }) {
     setTranslateX((pre) => pre - 306);
   };
 
-  //팝업창 데이터 올려주기
-  const SponsorModal = (data) => {
-    handleSponsorModal(data);
-  };
-
   useEffect(() => {
     handleLoad();
   }, []);
@@ -70,7 +65,7 @@ function SponsorshipList({ handleSponsorModal }) {
                 <SponsorshipItem
                   key={item.id}
                   item={item}
-                  SponsorModal={SponsorModal}
+                  handleSponsorModal={handleSponsorModal}
                 />
               );
             })}
