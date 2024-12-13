@@ -1,41 +1,73 @@
-import { getVote } from "../../api";
-import React, { useState } from "react";
-import credit from "../../assets/icons/credit.png";
+import { getVoteData } from "../../api";
+import React, { useState, useEffect } from "react";
 import IdolModalChart from "./IdolModal";
+import CustomButton from "../CustomButtom/CustomButton";
+import CreditModal from "./LackingCredit";
 
-function Modal() {
+function VoteModal() {
+  const [IdolChart, setIdolChart] = useState([]);
   const [pageSize, setPageSize] = useState(6);
-  const handleLoad = () => {
-    setPageSize(pageSize);
+  const [error, setError] = useState(null);
+  const [isCreditModalOpen, setIsCreditModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getVoteData({ pageSize });
+        return data;
+      } catch (err) {
+        console.error("데이터를 가져오는 데 실패했습니다:", err);
+        setError("데이터를 가져오는 데 실패했습니다.");
+      }
+    };
+
+    fetchData().then((res) => {
+      setIdolChart(res?.idols || []);
+      setError(null);
+    });
+  }, [pageSize]);
+
+  const handleVoteClick = () => {
+    const userCredits = 0;
+    if (userCredits < 1000) {
+      setIsCreditModalOpen(true);
+    } else {
+      alert("투표가 완료되었습니다!");
+    }
   };
+
+  const closeModal = () => {
+    setIsCreditModalOpen(false); // 모달 닫기
+  };
+
   return (
     <>
-      <div>
+      <div style={{ position: "relative", zIndex: "1000" }}>
         <h1>이달의 여자 아이돌</h1>
-        <div></div>
-        <CustomButton width={128} height={32}>
+        {IdolChart?.length > 0 ? (
+          <ul>
+            {IdolChart.map((idol, index) => (
+              <IdolModalChart
+                key={`${idol.id}-${index}`}
+                imgUrl={idol.profilePicture}
+                group={idol.group}
+                name={idol.name}
+                totalVotes={idol.totalVotes}
+              />
+            ))}
+          </ul>
+        ) : (
+          <p>{error || "데이터가 없습니다."}</p>
+        )}
+        <CustomButton width={128} height={32} onClick={handleVoteClick}>
           <span>투표하기</span>
         </CustomButton>
-        <div> 투표하는데 1000 크레딧이 소모됩니다.</div>
+        <div>투표하는데 1000 크레딧이 소모됩니다.</div>
       </div>
-      <div>
-        <img src={credit} alt="creditImg" />앗 투표하기 위한 크레딧이 부족해요
-        <button>확인</button>
-      </div>
-      <div>
-        <h2>크레딧 충전하기</h2>
-        <div>
-          <img src={credit} alt="creditImg" /> 100{" "}
-        </div>
-        <div>
-          <img src={credit} alt="creditImg" /> 500{" "}
-        </div>
-        <div>
-          <img src={credit} alt="creditImg" /> 1000{" "}
-        </div>
-      </div>
+      {/*크레딧 부족 모달*/}
+      <CreditModal isOpen={isCreditModalOpen} onClose={closeModal} />
     </>
   );
 }
 
-export default Modal;
+export default VoteModal;
