@@ -45,3 +45,20 @@ export async function getSponsershipData() {
   const data = await response.json();
   return data;
 }
+
+export async function postDonation({ id, amount }) {
+  const response = await fetch(
+    `https://fandom-k-api.vercel.app/12-9/donations/${id}/contribute`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        amount: amount,
+      }),
+    }
+  );
+  if (!response.ok) {
+    throw new Error("후원하는데 실패했습니다.");
+  }
+  const data = await response.json();
+  return data;
+}
