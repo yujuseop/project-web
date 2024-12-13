@@ -1,6 +1,7 @@
 import { useState } from "react";
 import credit from "../../assets/icons/credit.png";
 import styles from "./SponsorshipModal.module.scss";
+import CustomButton from "../CustomButtom/CustomButton";
 
 function SponsorshipModal({ data }) {
   const [input, setInput] = useState("");
@@ -30,6 +31,7 @@ function SponsorshipModal({ data }) {
       <div className={styles.credit_container}>
         <div className={styles.credit_input_container}>
           <input
+            type="number"
             className={styles.credit_input}
             placeholder="크레딧 입력"
             onChange={handleInput}
@@ -45,7 +47,9 @@ function SponsorshipModal({ data }) {
           갖고 있는 크레딧보다 더 많이 후원할 수 없어요
         </p>
       </div>
-      <button>후원하기</button>
+      <CustomButton width={295} height={42}>
+        후원하기
+      </CustomButton>
     </div>
   );
 }

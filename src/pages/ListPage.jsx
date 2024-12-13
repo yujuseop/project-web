@@ -9,9 +9,9 @@ import ModalWrap from "../components/Modal/ModalWrap";
 import Modal from "../components/Modal/Modal";
 
 function ListPage() {
-  const [modalContents, setModalContents] = useState();
+  const [modalContents, setModalContents] = useState(); // 1,2,3,4
   const [isModal, setIsModal] = useState(false);
-
+  //데이터 상태관리
   const [sponsorData, setSponsorData] = useState();
   const [voteData, setVoteData] = useState();
   useScrollTop();
@@ -34,6 +34,7 @@ function ListPage() {
   const handleDeleteModal = () => {
     setIsModal(false);
     setSponsorData();
+    setVoteData();
   };
 
   //1번 후원하기, 2번 투표하기, 3번 크레딧 부족, 4번 크레딧 충전
@@ -43,6 +44,8 @@ function ListPage() {
         return <SponsorshipModal data={sponsorData} />;
       case 2: //투표하기
         return <Modal />;
+      default:
+        break;
     }
   }
 
