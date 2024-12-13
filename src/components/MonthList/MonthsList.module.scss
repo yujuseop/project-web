@@ -1,6 +1,53 @@
 @use "../../styles/color.scss" as *;
 
+//idolChart에서 사용하는 scss
+.chartContents {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-top: 24px;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  top: 5px;
+  left: 5px;
+  gap: 8px;
+  border-radius: 40px;
+  opacity: 0px;
+  object-fit: cover;
+}
+
+.chartInfo {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 10px;
+}
+
+.chartGroup {
+  display: flex;
+  gap: 5px;
+  justify-content: space-around;
+  align-items: center;
+  .rank {
+    color: $brand-orange;
+  }
+}
+
+.chartVoteNum {
+  display: flex;
+  justify-content: flex-end;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+//monthlist에서 사용중인 scss
 .chartNav {
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
@@ -18,36 +65,6 @@
   padding: 8px;
 }
 
-.imgBorder {
-  display: inline-block;
-  padding: 5px;
-  border: 1px solid $brand-orange;
-  border-radius: 50%;
-}
-
-.img {
-  width: 60px;
-  height: 60px;
-  top: 5px;
-  left: 5px;
-  gap: 8px;
-  border-radius: 40px;
-  opacity: 0px;
-  object-fit: cover;
-}
-
-.chartContents {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.chartInfo {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
 .tabs {
   display: flex;
   justify-content: center;
@@ -63,6 +80,11 @@
   color: $gray-warm;
 
   border-style: none;
+
+  &:hover {
+    transform: translateY(-5px);
+    opacity: rgba(255, 255, 255, 0.8);
+  }
 }
 
 .activeTab {
@@ -72,13 +94,19 @@
 }
 
 .LankingChart {
+  margin: 0 auto;
   width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  list-style: none;
 }
 
 .moreBtn {
+  margin: 0 auto;
   width: 1200px;
   display: flex;
   justify-content: center;
+  padding-top: 51px;
 }
