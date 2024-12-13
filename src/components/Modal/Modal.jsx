@@ -12,19 +12,7 @@ function Modal() {
     <>
       <div>
         <h1>이달의 여자 아이돌</h1>
-        <div>
-          <ul>
-            {idolList?.map((idol, index) => (
-              <IdolModalChart
-                key={`${idol.id}-${index}`}
-                imgUrl={idol.profilePicture}
-                group={idol.group}
-                name={idol.name}
-                totalVotes={idol.totalVotes}
-              />
-            ))}
-          </ul>
-        </div>
+        <div></div>
         <CustomButton width={128} height={32}>
           <span>투표하기</span>
         </CustomButton>
