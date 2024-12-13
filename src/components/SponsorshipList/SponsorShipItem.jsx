@@ -1,4 +1,5 @@
 import Credit from "../../assets/icons/credit.png";
+import CustomButton from "../CustomButtom/CustomButton";
 import styles from "./SponsorshipItem.module.scss";
 
 function SponsorshipItem({ item, handleSponsorModal }) {
@@ -27,17 +28,22 @@ function SponsorshipItem({ item, handleSponsorModal }) {
           src={item.idol.profilePicture}
         />
         <div className={styles.card_img_grdiant}></div>
-        <button
-          disabled={disable}
-          className={styles.card_button}
-          onClick={onclickSponsorButton}
-        >
-          후원하기
-        </button>
+        {disable ? (
+          <CustomButton className={styles.card_button_disable}>
+            🤍후원 마감🤍
+          </CustomButton>
+        ) : (
+          <CustomButton
+            className={styles.card_button}
+            onClick={onclickSponsorButton}
+          >
+            후원하기
+          </CustomButton>
+        )}
       </div>
       <div className={styles.card_description_container}>
         <div className={styles.card_title_container}>
-          <span className={styles.card_advertising}>{item.subtitle}</span>
+          <span className={styles.card_subtitle}>{item.subtitle}</span>
           <h1 className={styles.card_title}>{item.title}</h1>
         </div>
         <div className={styles.card_sponsor_container}>
@@ -49,10 +55,12 @@ function SponsorshipItem({ item, handleSponsorModal }) {
                 src={Credit}
               />
               <span className={styles.card_credit_count}>
-                {item.receivedDonations}
+                {item.receivedDonations.toLocaleString()}
               </span>
             </div>
-            <p className={styles.card_deadline}>{diffDays}일 남음</p>
+            <p className={styles.card_deadline}>
+              {diffDays >= 0 ? `${diffDays}일 남음` : `마감`}
+            </p>
           </div>
           <div className={styles.card_goal}>
             <div

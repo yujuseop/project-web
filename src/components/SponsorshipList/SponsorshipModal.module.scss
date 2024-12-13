@@ -3,8 +3,6 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 295px;
-  height: 453px;
   gap: 24px;
 }
 
@@ -60,6 +58,13 @@
 .credit_input::placeholder {
   color: $gray-cool-300;
   font-size: 20px;
+}
+
+//input 화살표 지우기
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .credit_logo {
