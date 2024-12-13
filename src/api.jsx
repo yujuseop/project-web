@@ -11,13 +11,16 @@ export async function getVoteData(pageSize = 6) {
 
 //이미지, 순위의 숫자, 이름, 투표수 api ?
 
-export async function getIdolData({ pageSize = 16 }) {
-  const query = `12-9/idols?pageSize=${pageSize}`;
+export async function getIdolData({ pageSize = 16, cursor = null }) {
+  let query = `12-9/idols?pageSize=${pageSize}`;
+  if (cursor) {
+    query = `12-9/idols?cursor=${cursor}&pageSize=${pageSize}`;
+  }
   const response = await fetch(`${BASE_URL}/${query}`);
   if (!response.ok) {
     throw new Error("후원데이터를 가져오는데 실패했습니다.");
   }
-  const data = await response.json();
+  const data = response.json();
   return data;
 }
 
