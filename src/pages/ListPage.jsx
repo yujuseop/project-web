@@ -6,7 +6,7 @@ import SponsorshipList from "../components/SponsorshipList/SponsorshipList";
 import useScrollTop from "../hooks/useScrollTop";
 import SponsorshipModal from "../components/SponsorshipList/SponsorshipModal";
 import ModalWrap from "../components/Modal/ModalWrap";
-import Modal from "../components/Modal/Modal";
+import VoteModal from "../components/MonthList/components/VoteModal";
 
 function ListPage() {
   const [modalContents, setModalContents] = useState(); // 1,2,3,4
@@ -43,7 +43,7 @@ function ListPage() {
       case 1: //후원하기
         return <SponsorshipModal data={sponsorData} />;
       case 2: //투표하기
-        return <Modal />;
+        return <VoteModal />;
       default:
         break;
     }
