@@ -5,7 +5,7 @@ import chartIMG from "../../assets/icons/Chart.svg";
 import styles from "./MonthsList.module.scss";
 import IdolChart from "./components/IdolChart";
 
-function MonthsList() {
+function MonthsList({ handleVoteModal }) {
   const [idolList, setIdolList] = useState([]);
   const [gender, setGender] = useState("female");
   const [pageSize, setPageSize] = useState(10);
@@ -13,6 +13,10 @@ function MonthsList() {
   const [error, setError] = useState(null);
 
   const handleTabClick = (selectedGender) => setGender(selectedGender);
+
+  const onclickVoteBtn = () => {
+    handleVoteModal();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +42,12 @@ function MonthsList() {
     <div>
       <div className={styles.chartNav}>
         <h2>이달의 차트</h2>
-        <CustomButton className={styles.chartBtn} width={128} height={32}>
+        <CustomButton
+          className={styles.chartBtn}
+          width={128}
+          height={32}
+          onClick={onclickVoteBtn}
+        >
           <img src={chartIMG} />
           <span>차트 투표하기</span>
         </CustomButton>
