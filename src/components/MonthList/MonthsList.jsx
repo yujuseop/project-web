@@ -12,7 +12,14 @@ function MonthsList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleTabClick = (selectedGender) => setGender(selectedGender);
+  const handleTabClick = (selectedGender) => {
+    setGender(selectedGender);
+    setPageSize(10);
+  };
+
+  const handleMore = () => {
+    setPageSize((prevPageSize) => prevPageSize + 10);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +39,7 @@ function MonthsList() {
     });
   }, [gender, pageSize]);
 
-  const handleMore = () => {};
+  const sortedIdols = [...idolList].sort((a, b) => b.totalVotes - a.totalVotes);
 
   return (
     <div>
@@ -64,9 +71,10 @@ function MonthsList() {
       </div>
       {/* 아이돌 리스트 출력 */}
       <ul className={styles.LankingChart}>
-        {idolList?.map((idol, index) => (
+        {sortedIdols?.map((idol, index) => (
           <IdolChart
             key={`${idol.id}-${index}`}
+            rank={index + 1}
             imgUrl={idol.profilePicture}
             group={idol.group}
             name={idol.name}
@@ -75,12 +83,11 @@ function MonthsList() {
         ))}
       </ul>
       <div className={styles.moreBtn}>
-        <CustomButton isMoreButton onClick={handleMore()}>
+        <CustomButton isMoreButton onClick={handleMore}>
           더보기
         </CustomButton>
       </div>
 
-      {loading && <p>로딩 중...</p>}
       {error && <p>{error}</p>}
     </div>
   );

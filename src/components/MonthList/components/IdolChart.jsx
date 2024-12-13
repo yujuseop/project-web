@@ -1,6 +1,6 @@
 import styles from "../MonthsList.module.scss";
 
-export default function IdolChart({ imgUrl, group, name, totalVotes }) {
+export default function IdolChart({ imgUrl, group, name, totalVotes, rank }) {
   return (
     <li>
       <div
@@ -10,9 +10,14 @@ export default function IdolChart({ imgUrl, group, name, totalVotes }) {
         <img className={styles.img} src={imgUrl} alt={`${group}-이미지`} />
 
         <div className={styles.chartInfo}>
-          <p>{group}</p>
-          <p>{name}</p>
-          <p>{totalVotes}표</p>
+          <div className={styles.chartGroup}>
+            <p className={styles.rank}>{rank}</p>
+            <p>{group}</p>
+            <p>{name}</p>
+          </div>
+          <div className={styles.chartVoteNum}>
+            <p>{totalVotes}표</p>
+          </div>
         </div>
       </div>
     </li>
