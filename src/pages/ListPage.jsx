@@ -14,6 +14,7 @@ function ListPage() {
   //데이터 상태관리
   const [sponsorData, setSponsorData] = useState();
   const [voteData, setVoteData] = useState();
+  const [MyCreditData, setMyCreditData] = useState();
   useScrollTop();
 
   //후원 모달 팝업 띄우기
@@ -28,6 +29,12 @@ function ListPage() {
     setIsModal(true);
     setVoteData(data);
     setModalContents(2);
+  };
+  //크레딧 충전 모달 팝업 띄우기
+  const handleMyCreditModal = (data) => {
+    setIsModal(true);
+    setMyCreditData(data);
+    setModalContents(4);
   };
 
   //모달 팝업 X버튼 클릭시 닫기
@@ -44,6 +51,8 @@ function ListPage() {
         return <SponsorshipModal data={sponsorData} />;
       case 2: //투표하기
         return <VoteModal />;
+      case 4: //크레딧 충전
+        return <MyCredit data={MyCreditData} />;
       default:
         break;
     }
@@ -52,7 +61,12 @@ function ListPage() {
   return (
     <div>
       <Header />
-      <MyCredit />
+      <MyCredit handleMyCreditModal={handleMyCreditModal} />
+      {isModal && (
+        <ModalWrap handleDeleteModal={handleDeleteModal}>
+          <ModalContents modalContents={modalContents} />
+        </ModalWrap>
+      )}
       <SponsorshipList handleSponsorModal={handleSponsorModal} />
       {isModal && (
         <ModalWrap handleDeleteModal={handleDeleteModal}>
