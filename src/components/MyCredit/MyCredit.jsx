@@ -1,21 +1,20 @@
-import { useState } from "react";
-import CustomButton from "../CustomButtom/CustomButton";
-import Credit from "../../assets/icons/credit.png";
 import styles from "./MyCredit.modul.scss";
+import useCredit from "../../hooks/useCredit";
 
-function MyCredit() {
-  const [credit, setCredit] = useState(0); //크레딧 초기값 0
-  const [selectedAmount, setSelectedAmount] = useState(0);
-  //localstorage로 연결하는 코드를 만들어야함.
 
-  const selectAmount = (amount) => {
-    setSelectedAmount(amount);
+function MyCredit({handleMyCreditModal,}) {
+//크레딧 모달을 띄우기 위한 함수
+  const onClickAddBtn = () => {
+    handleMyCreditModal();
   };
+//레포지토리연결을 해야한다.
 
-  return (
+const {credit} = useCredit();
+
+ return (
     <div>
-      <div>내크레딧:{credit}</div>
-      <button onClick={handleModal}>충전하기</button>
+      <div>내크레딧:{credit.toLocaleString()}</div>
+      <button onClick={onClickAddBtn}>충전하기</button>
     </div>
   );
 }

@@ -7,6 +7,8 @@ import useScrollTop from "../hooks/useScrollTop";
 import SponsorshipModal from "../components/SponsorshipList/SponsorshipModal";
 import ModalWrap from "../components/Modal/ModalWrap";
 import VoteModal from "../components/MonthList/components/VoteModal";
+import ChargeCreditModal from "../components/Modal/ChargeCreditModal";
+
 
 function ListPage() {
   const [modalContents, setModalContents] = useState(); // 1,2,3,4
@@ -14,7 +16,7 @@ function ListPage() {
   //데이터 상태관리
   const [sponsorData, setSponsorData] = useState();
   const [voteData, setVoteData] = useState();
-  const [MyCreditData, setMyCreditData] = useState();
+  const [myCreditData, setMyCreditData] = useState();
   useScrollTop();
 
   //후원 모달 팝업 띄우기
@@ -36,6 +38,15 @@ function ListPage() {
     setMyCreditData(data);
     setModalContents(4);
   };
+  //충전 크레딧 업데이트
+  const handleCharge = (amount) => {
+    setMyCreditData((prev)=> prev + amount);
+    setIsModal(false);
+  }
+
+
+
+
 
   //모달 팝업 X버튼 클릭시 닫기
   const handleDeleteModal = () => {
@@ -52,7 +63,7 @@ function ListPage() {
       case 2: //투표하기
         return <VoteModal />;
       case 4: //크레딧 충전
-        return <MyCredit data={MyCreditData} />;
+        return <ChargeCreditModal onCharge={handleCharge} />;
       default:
         break;
     }
@@ -61,12 +72,7 @@ function ListPage() {
   return (
     <div>
       <Header />
-      <MyCredit handleMyCreditModal={handleMyCreditModal} />
-      {isModal && (
-        <ModalWrap handleDeleteModal={handleDeleteModal}>
-          <ModalContents modalContents={modalContents} />
-        </ModalWrap>
-      )}
+      <MyCredit handleMyCreditModal={handleMyCreditModal} myCreditData={myCreditData} />
       <SponsorshipList handleSponsorModal={handleSponsorModal} />
       {isModal && (
         <ModalWrap handleDeleteModal={handleDeleteModal}>
