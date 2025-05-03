@@ -6,4 +6,3 @@ console.log("Hello from index");
 // ${mod.filePath}
 //의존성 파일
 console.log("Hello from message");
-
