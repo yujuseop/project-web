@@ -1,0 +1,23 @@
+{
+  "name": "project-web",
+  "version": "1.0.0",
+  "description": "노트북입니더",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yujuseop/project-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yujuseop/project-web/issues"
+  },
+  "homepage": "https://github.com/yujuseop/project-web#readme",
+  "dependencies": {
+    "acorn": "^8.14.1"
+  }
+}
