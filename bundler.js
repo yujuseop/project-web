@@ -21,24 +21,44 @@ function createModule(filePath) {
     code: content, // 파일 원본 코드
   };
 }
+//두번 import 하면 그대로 두번 나옴.
+// function createDependencyGraphy(entry) {
+//   // 모듈 그래프 생성
+//   const entryPath = path.resolve(entry); // entry 경로 절대화
+//   const entryModule = createModule(entryPath); // 시작 모듈 생성
 
+//   const graph = [entryModule]; // 그래프에 모듈을 담음
+
+//   for (const module of graph) {
+//     module.dependencies.forEach((relPath) => {
+//       const absPath = path.resolve(path.dirname(module.filePath), relPath); // 상대 경로 -> 절대 경로
+//       const child = createModule(absPath); //자식 모듈 생성
+//       graph.push(child); // 그래프에 추가
+//     });
+//   }
+//   return graph; // 모든 모듈이 담긴 의존성 그래프
+// } // 깊이 우선 탐색 처럼 한번만 순회해서 단순 의존성 그래프 구성
+//그것을 방지하기 위해 visited Set을 도입
 function createDependencyGraphy(entry) {
-  // 모듈 그래프 생성
-  const entryPath = path.resolve(entry); // entry 경로 절대화
-  const entryModule = createModule(entryPath); // 시작 모듈 생성
+  const graph = [];
+  const visited = new Set();
 
-  const graph = [entryModule]; // 그래프에 모듈을 담음
+  function traverse(filePath) {
+    const absPath = path.resolve(filePath);
+    if (visited.has(absPath)) return; // 이미 방문 했으면 건너뜀.
 
-  for (const module of graph) {
-    module.dependencies.forEach((relPath) => {
-      const absPath = path.resolve(path.dirname(module.filePath), relPath); // 상대 경로 -> 절대 경로
-      const child = createModule(absPath); //자식 모듈 생성
-      graph.push(child); // 그래프에 추가
+    visited.add(absPath);
+    const module = createModule(absPath);
+    graph.push(module);
+
+    module.dependencies.forEach((dep) => {
+      const childPath = path.resolve(path.dirname(absPath), dep);
+      traverse(childPath); // 재귀 탐색
     });
   }
-  return graph; // 모든 모듈이 담긴 의존성 그래프
-} // 깊이 우선 탐색 처럼 한번만 순회해서 단순 의존성 그래프 구성
-
+  traverse(entry);
+  return graph;
+}
 function bundle(entry) {
   // 그래프를 순회하며 코드 합치기
   const graph = createDependencyGraphy(entry);
